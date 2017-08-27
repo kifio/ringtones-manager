@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">Ringtones</string>
+    <string name="app_name">Ringtones Randomizer</string>
 
-    <!-- Strings related to Settings -->
+    <!-- Settings -->
+    <string name="selected_ringtones">Selected ringtones</string>
+    <string name="how_to_change_ringtones">Change ringtones</string>
 
-    <string name="ringtones_directory">Ringtones directory</string>
-    <string name="ringtones_schedule">Schedule settings</string>
-    <string name="enable">Enable</string>
-    <string name="change_ringtone_every">Change ringtone every hour</string>
+    <string name="selected_ringtones_default_value">Nothing selected</string>
+    <string name="how_to_change_ringtones_default_value">After each incoming call</string>
 
+    <!-- How to change rington -->
+    <string name="after_incoming_calls">After incoming calls</string>
+    <string name="by_schedule">By schedule</string>
 
 </resources>

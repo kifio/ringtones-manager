@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Settings -->
+    <string name="selected_ringtones">Выбранные мелодии</string>
+    <string name="how_to_change_ringtones">Менять рингтон</string>
+
+    <string name="selected_ringtones_default_value">Ничего не выбрано</string>
+    <string name="how_to_change_ringtones_default_value">После каждого звонка</string>
+
+    <!-- How to change rington -->
+    <string name="after_incoming_calls">После входящих звонков</string>
+    <string name="by_schedule">По расписанию</string>
+
+</resources>
