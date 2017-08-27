@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:paddingTop="96dp">
+
+    <TextView style="@style/SettingsTextViewSmall"
+        android:id="@+id/pathDescription"
+        android:gravity="start|top"
+        android:text="Папка с рингтонами"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView style="@style/SettingsTextView"
+        android:id="@+id/path"
+        android:drawableLeft="@drawable/ic_directory"
+        android:drawableStart="@drawable/ic_directory"
+        android:gravity="center_vertical"
+        android:text="/root/Ringtones"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@+id/pathDescription"/>
+
+    <TextView style="@style/SettingsTextViewSmall"
+        android:id="@+id/scheduleDescription"
+        android:gravity="start|top"
+        android:text="Change ringtone"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintTop_toBottomOf="@+id/path"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView style="@style/SettingsTextView"
+        android:id="@+id/textView2"
+        android:text="After every call"
+        android:drawableLeft="@drawable/ic_call"
+        android:drawableStart="@drawable/ic_call"
+        android:gravity="start|center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scheduleDescription" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/SettingsTextView"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:drawableLeft="@drawable/ic_schedule"
+        android:drawableStart="@drawable/ic_schedule"
+        android:gravity="start|center_vertical"
+        android:text="Every hour"
+        app:layout_constraintEnd_toStartOf="@+id/switch1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+
+</android.support.constraint.ConstraintLayout>

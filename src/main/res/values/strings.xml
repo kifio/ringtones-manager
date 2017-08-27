@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ringtones</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="ringtones_directory">Ringtones directory</string>
+    <string name="ringtones_schedule">Schedule settings</string>
+    <string name="enable">Enable</string>
+    <string name="change_ringtone_every">Change ringtone every hour</string>
+
+
+</resources>
