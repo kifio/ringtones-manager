@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_main)
-        pushFragment(MainPreferencesFragment(), null)
+        pushFragment(SettingsFragment(), null)
     }
 
     fun pushFragment(f: Fragment, title: CharSequence?) {
@@ -20,7 +20,4 @@ class MainActivity : AppCompatActivity() {
                 .commit()
     }
 
-    fun popFragmanet() {
-        supportFragmentManager.popBackStack()
-    }
 }

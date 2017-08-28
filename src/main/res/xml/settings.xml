@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference android:key="ringtones_list"
+    <Preference android:key="@string/pref_selected_ringtones"
         android:title="@string/selected_ringtones"
-        android:summary="@string/selected_ringtones_default_value"
-        android:defaultValue="@string/selected_ringtones_default_value"/>
+        android:summary="@string/nothing_selected"
+        android:defaultValue="@string/nothing_selected"/>
 
-    <Preference android:key="how_to_change"
-        android:title="@string/how_to_change_ringtones"
-        android:summary="@string/how_to_change_ringtones_default_value"
-        android:defaultValue="@string/how_to_change_ringtones_default_value"/>
+    <CheckBoxPreference android:key="@string/pref_after_each_incoming_call"
+        android:title="@string/enable_service"
+        android:summary="@string/enable_service_description"
+        android:defaultValue="false"/>
+
+    <Preference android:key="@null"
+        android:title="@string/change_immediately"/>
 
 </PreferenceScreen>
