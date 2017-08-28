@@ -1,15 +1,22 @@
 package kifio.ringtones
 
 import android.os.Bundle
-import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.preference.Preference
 
-/**
- * Created by kifio on 27.08.17.
- */
-class ChangeRingtonePreferencesFragment : PreferenceFragmentCompat() {
+class ChangeRingtonePreferencesFragment : BasePreferencesFragment() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.change_ringtone)
+        addPreferencesFromResource(R.xml.how_to_change)
+        for (i in 0 until preferenceScreen.preferenceCount)
+            preferenceScreen.getPreference(i).onPreferenceClickListener = this
+    }
+
+    override fun onPreferenceClick(p: Preference?): Boolean {
+        if (p == null) return false
+        if (p.key == "after_incoming_calls") {
+            NumberPickerFragment().show(activity.fragmentManager, "number_picker")
+        }
+        return true
     }
 
 }

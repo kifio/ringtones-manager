@@ -3,8 +3,11 @@ package kifio.ringtones
 import android.os.Bundle
 import android.support.v7.preference.PreferenceFragmentCompat
 
-class MainPreferencesFragment : PreferenceFragmentCompat(),
-        android.support.v7.preference.Preference.OnPreferenceClickListener {
+class MainPreferencesFragment : BasePreferencesFragment() {
+
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        addPreferencesFromResource(R.xml.settings)
+    }
 
     override fun onPreferenceClick(p: android.support.v7.preference.Preference?): Boolean {
         if (p == null) return false
@@ -13,12 +16,6 @@ class MainPreferencesFragment : PreferenceFragmentCompat(),
             a.pushFragment(ChangeRingtonePreferencesFragment(), p.title)
         }
         return true
-    }
-
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.settings)
-        for (i in 0 until preferenceScreen.preferenceCount)
-            preferenceScreen.getPreference(i).onPreferenceClickListener = this
     }
 
 }
