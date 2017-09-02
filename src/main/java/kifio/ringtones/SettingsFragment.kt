@@ -1,9 +1,6 @@
 package kifio.ringtones
 
-import android.app.Notification
-import android.app.NotificationManager
 import android.os.Bundle
-import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 
@@ -11,23 +8,25 @@ class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceClic
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
+        for(i in 0 until preferenceScreen.preferenceCount) {
+            preferenceScreen.getPreference(i).onPreferenceClickListener = this
+        }
     }
 
     override fun onPreferenceClick(p: Preference?): Boolean {
         if (p == null) return false
-        val a = activity as MainActivity
         when (p.key) {
 
-            getString(R.string.pref_selected_ringtones) -> {
+            getString(R.string.pref_change_by_schedule) -> {
 
             }
 
-            getString(R.string.pref_after_each_incoming_call) -> {
-
+            getString(R.string.pref_change_immediately) -> {
+                RingtonesManager.resetRingtone(activity)
             }
 
-            getString(R.string.pref_change_ringtones) -> {
-
+            getString(R.string.pref_silent_mode_enable) -> {
+                SilentModeDialog.newInstance().show(activity.fragmentManager, "asdf")
             }
         }
         return true

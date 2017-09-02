@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference android:key="@string/pref_selected_ringtones"
-        android:title="@string/selected_ringtones"
-        android:summary="@string/nothing_selected"
-        android:defaultValue="@string/nothing_selected"/>
+    <PreferenceCategory android:title="@string/ringtones">
 
-    <CheckBoxPreference android:key="@string/pref_after_each_incoming_call"
-        android:title="@string/enable_service"
-        android:summary="@string/enable_service_description"
-        android:defaultValue="false"/>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/pref_change_by_schedule"
+        android:title="@string/enable_service" />
 
-    <Preference android:key="@null"
-        android:title="@string/change_immediately"/>
+    <Preference
+        android:key="@string/pref_change_immediately"
+        android:title="@string/change_immediately" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/silent_mode">
+
+        <SwitchPreference
+            android:key="@string/pref_silent_mode_enable"
+            android:title="@string/silent_mode" />
+
+        <Preference
+            android:dependency="@string/pref_silent_mode_enable"
+            android:key="@string/pref_silent_mode_from"
+            android:title="@string/silent_mode_from" />
+
+        <Preference
+            android:dependency="@string/pref_silent_mode_enable"
+            android:key="@string/pref_silent_mode_to"
+            android:title="@string/silent_mode_to" />
+
+    </PreferenceCategory>
+
 
 </PreferenceScreen>

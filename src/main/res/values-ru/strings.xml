@@ -1,10 +1,13 @@
 <resources>
 
     <!-- Settings -->
-    <string name="selected_ringtones">Выбранные мелодии</string>
     <string name="enable_service">Включить сервис</string>
     <string name="enable_service_description">Менять рингтон после каждого звонка</string>
     <string name="change_immediately">Изменить рингтон сейчас</string>
     <string name="nothing_selected">Ничего не выбрано</string>
+    <string name="silent_mode">Беззвучный режим</string>
+    <string name="ringtones">Рингтоны</string>
+    <string name="silent_mode_from">С</string>
+    <string name="silent_mode_to">До</string>
 
 </resources>
