@@ -21,7 +21,6 @@ import java.util.*
 object RingtonesManager {
 
     private val TAG = "kifio"
-    private val MIME_TYPE = "audio/mp3"
 
     fun resetRingtone(ctx: Context) {
 
@@ -29,6 +28,7 @@ object RingtonesManager {
         val projection = arrayOf(MediaStore.Audio.Media.DATA,
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.ARTIST)
+
         val selection = null
         val selectionArgs = null
         val sortOrder = null
@@ -80,19 +80,24 @@ object RingtonesManager {
         val values = ContentValues()
         val file = File(audio.path)
         val cr = ctx.contentResolver
-        var uri = MediaStore.Audio.Media.getContentUriForPath(audio.path)
 
         values.put(MediaStore.MediaColumns.DATA, audio.path)
         values.put(MediaStore.MediaColumns.TITLE, audio.title)
-        values.put(MediaStore.MediaColumns.MIME_TYPE, MIME_TYPE)
         values.put(MediaStore.MediaColumns.SIZE, file.length())
         values.put(MediaStore.Audio.Media.ARTIST, audio.artist)
         values.put(MediaStore.Audio.Media.IS_RINGTONE, true)
+        values.put(MediaStore.Audio.Media.IS_NOTIFICATION, false)
+        values.put(MediaStore.Audio.Media.IS_ALARM, true)
         values.put(MediaStore.Audio.Media.IS_MUSIC, false)
-        uri = cr.insert(uri, values)
+
+        Thread(Runnable {  }).start()
+        val uri = MediaStore.Audio.Media.getContentUriForPath(audio.path)
+        cr.delete(uri,
+                MediaStore.MediaColumns.DATA + "=?", arrayOf(audio.path))
+        val newUri = cr.insert(uri, values)
 
         try {
-            RingtoneManager.setActualDefaultRingtoneUri(ctx, RingtoneManager.TYPE_RINGTONE, uri)
+            RingtoneManager.setActualDefaultRingtoneUri(ctx, RingtoneManager.TYPE_RINGTONE, newUri)
             showNotification(ctx, audio)
         } catch (t: Throwable) {
             t.printStackTrace()
@@ -133,5 +138,5 @@ object RingtonesManager {
         return BitmapFactory.decodeByteArray(bytes, offset, bytes.size)
     }
 
-    data class Audio(val title: String, val path: String, val artist: String)
+
 }

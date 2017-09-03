@@ -1,27 +1,27 @@
 package kifio.ringtones
 
-import android.app.Activity
+import android.app.AlarmManager
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.net.Uri
-import android.content.Intent
-import android.os.Build
-import android.provider.Settings
-
 
 class MainActivity : AppCompatActivity() {
 
     private val jobID = 1
     private val permRequestCode = 199
     private val settingRequestCode = 200
-    private val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
+    private val permissions = arrayOf(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     private val granted = PackageManager.PERMISSION_GRANTED
@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity() {
     private fun checkWriteSettingsPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.System.canWrite(applicationContext)) {
+
                 val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS, Uri.parse("package:" + packageName))
+
                 startActivityForResult(intent, settingRequestCode)
             } else {
                 checkPermissions()
@@ -69,9 +71,9 @@ class MainActivity : AppCompatActivity() {
     private fun schedule() {
         val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobScheduler.schedule(JobInfo.Builder(jobID,
-                ComponentName(this, SetRingtoneService::class.java))
+                ComponentName(this, JobService::class.java))
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setPeriodic(1000 * 60)
+                .setPeriodic(AlarmManager.INTERVAL_DAY)
                 .setPersisted(true)
                 .build())
     }

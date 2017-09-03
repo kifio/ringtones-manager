@@ -7,7 +7,7 @@ import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-class SetRingtoneService : JobService() {
+class JobService : JobService() {
 
     override fun onStartJob(parameters: JobParameters): Boolean {
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
