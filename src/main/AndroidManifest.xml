@@ -31,7 +31,6 @@
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true"/>
 
-        <receiver android:name=".silent_mode.SilentModeReceiver" />
         <service android:name=".ResetRingtoneService" android:exported="false" />
 
     </application>

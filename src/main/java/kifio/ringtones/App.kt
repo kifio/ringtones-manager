@@ -1,11 +1,13 @@
 package kifio.ringtones
 
-import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.annotation.TargetApi
+import android.app.*
+import android.content.Intent
+import android.graphics.Bitmap
+import android.support.v7.app.NotificationCompat
+import java.util.*
 
 class App : Application() {
 

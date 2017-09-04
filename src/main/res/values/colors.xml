@@ -6,4 +6,6 @@
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="colorSecondaryText">#BDBDBD</color>
     <color name="colorIcons">#FFFFFF</color>
+    <color name="ic_launcher_background">#297564</color>
+
 </resources>

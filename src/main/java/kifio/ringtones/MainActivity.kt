@@ -17,7 +17,7 @@ import android.support.v7.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private val jobID = 1
+    private val JOB_ID = 210
     private val permRequestCode = 199
     private val settingRequestCode = 200
     private val permissions = arrayOf(
@@ -68,14 +68,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun schedule() {
+    fun schedule() {
         val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-        jobScheduler.schedule(JobInfo.Builder(jobID,
+        jobScheduler.schedule(JobInfo.Builder(JOB_ID,
                 ComponentName(this, JobService::class.java))
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPeriodic(AlarmManager.INTERVAL_DAY)
                 .setPersisted(true)
                 .build())
+    }
+
+    fun cancel() {
+        val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        jobScheduler.cancel(JOB_ID)
     }
 
     private fun pushFragment(f: Fragment, title: CharSequence?) {

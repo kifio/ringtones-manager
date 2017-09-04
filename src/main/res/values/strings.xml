@@ -8,8 +8,5 @@
     <string name="change_immediately">Change ringtone immediately</string>
     <string name="nothing_selected">Nothing selected</string>
     <string name="ringtones">Ringtones</string>
-    <string name="silent_mode">Silent mode</string>
-    <string name="silent_mode_from">From</string>
-    <string name="silent_mode_to">To</string>
 
 </resources>

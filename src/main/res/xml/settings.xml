@@ -15,26 +15,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:key="@string/silent_mode"
-        android:title="@string/silent_mode">
-
-        <SwitchPreference
-            android:key="@string/pref_silent_mode_enable"
-            android:title="@string/silent_mode" />
-
-        <kifio.ringtones.silent_mode.SilentModePreference
-            android:dependency="@string/pref_silent_mode_enable"
-            android:key="@string/pref_silent_mode_from"
-            android:defaultValue="600"
-            android:title="@string/silent_mode_from" />
-
-        <kifio.ringtones.silent_mode.SilentModePreference
-            android:dependency="@string/pref_silent_mode_enable"
-            android:key="@string/pref_silent_mode_to"
-            android:defaultValue="1140"
-            android:title="@string/silent_mode_to" />
-
-    </PreferenceCategory>
-
-
 </PreferenceScreen>

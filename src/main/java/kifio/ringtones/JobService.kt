@@ -10,11 +10,10 @@ import android.support.annotation.RequiresApi
 class JobService : JobService() {
 
     override fun onStartJob(parameters: JobParameters): Boolean {
-        val sp = PreferenceManager.getDefaultSharedPreferences(this)
-        if (sp.getBoolean(getString(R.string.pref_change_by_schedule), false)) {
-            RingtonesManager.resetRingtone(this)
-        }
+
+        RingtonesManager.resetRingtone(this)
         jobFinished(parameters, false)
+
         return true
     }
 

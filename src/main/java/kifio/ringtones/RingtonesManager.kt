@@ -13,7 +13,7 @@ import android.media.MediaMetadataRetriever
 import android.media.RingtoneManager
 import android.os.Build
 import android.provider.MediaStore
-import android.support.v7.app.NotificationCompat
+import android.support.v4.app.NotificationCompat
 import android.util.Log
 import java.io.File
 import java.util.*
@@ -97,17 +97,20 @@ object RingtonesManager {
         val newUri = cr.insert(uri, values)
 
         try {
+
+            val msg = audio.artist + " - " + audio.title
+
             RingtoneManager.setActualDefaultRingtoneUri(ctx, RingtoneManager.TYPE_RINGTONE, newUri)
-            showNotification(ctx, audio)
+            showNotification(ctx, msg, getSongImage(audio.path))
+
         } catch (t: Throwable) {
             t.printStackTrace()
         }
     }
 
-    private fun showNotification(ctx: Context, audio: Audio) {
+    fun showNotification(ctx: Context, msg: String, icon: Bitmap?) {
 
         val manager = ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val msg = audio.artist + " - " + audio.title
         val requestCode = 0
         val intent = PendingIntent.getActivity(ctx,requestCode,
                 Intent(ctx, MainActivity::class.java),
@@ -115,10 +118,13 @@ object RingtonesManager {
 
         val builder = NotificationCompat.Builder(ctx)
                 .setSmallIcon(R.drawable.ic_audiotrack)
-                .setLargeIcon(getSongImage(audio.path))
                 .setContentTitle("Ringtone for today")
                 .setContentText(msg)
                 .setChannelId(App.CHANNEL_ID)
+
+        if (icon != null) {
+            builder.setLargeIcon(icon)
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setBadgeIconType(Notification.BADGE_ICON_SMALL)
@@ -137,6 +143,4 @@ object RingtonesManager {
 
         return BitmapFactory.decodeByteArray(bytes, offset, bytes.size)
     }
-
-
 }

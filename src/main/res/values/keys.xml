@@ -2,7 +2,4 @@
 <resources>
     <string name="pref_change_by_schedule">pref_change_by_schedule</string>
     <string name="pref_change_immediately">pref_change_immediately</string>
-    <string name="pref_silent_mode_enable">pref_silent_mode_enable</string>
-    <string name="pref_silent_mode_from">pref_silent_mode_start</string>
-    <string name="pref_silent_mode_to">pref_silent_mode_finish</string>
 </resources>

@@ -2,36 +2,35 @@ package kifio.ringtones
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.preference.Preference
 import android.support.v7.preference.Preference.OnPreferenceChangeListener
 import android.support.v7.preference.PreferenceFragmentCompat
-import kifio.ringtones.silent_mode.SilentModeAlarm
-import kifio.ringtones.silent_mode.SilentModeDialog
-import kifio.ringtones.silent_mode.SilentModePreference
 
 class SettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListener {
 
-    private lateinit var setImmediately: Preference
-    private lateinit var enableSilentMode: Preference
-    private lateinit var from: SilentModePreference
-    private lateinit var to: SilentModePreference
+    private lateinit var keyChangeRingtoneSchedule: String
+    private lateinit var keyChangeRingtoneImmediately: String
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
 
-        val keyFrom = getString(R.string.pref_silent_mode_from)
-        val keyTo = getString(R.string.pref_silent_mode_to)
+        keyChangeRingtoneSchedule = getString(R.string.pref_change_by_schedule)
+        keyChangeRingtoneImmediately = getString(R.string.pref_change_immediately)
 
-        setImmediately = preferenceScreen.findPreference(getString(R.string.pref_change_immediately))
-        enableSilentMode  = preferenceScreen.findPreference(getString(R.string.pref_silent_mode_enable))
-        from = preferenceScreen.findPreference(keyFrom) as SilentModePreference
-        to = preferenceScreen.findPreference(keyTo) as SilentModePreference
+        val changeBySchedule = preferenceScreen.findPreference(keyChangeRingtoneSchedule)
+        val setImmediately = preferenceScreen.findPreference(keyChangeRingtoneImmediately)
+
 
         setImmediately.setOnPreferenceClickListener { resetRingtone() }
-        enableSilentMode.onPreferenceChangeListener = this
-        from.onPreferenceChangeListener = this
-        to.onPreferenceChangeListener = this
+        changeBySchedule.onPreferenceChangeListener = this
+
+    }
+
+    override fun onPreferenceChange(preference: Preference, value: Any): Boolean {
+
+        scheduleRingtonesChanging(value as Boolean)
+
+        return true
     }
 
     private fun resetRingtone(): Boolean {
@@ -41,21 +40,13 @@ class SettingsFragment : PreferenceFragmentCompat(), OnPreferenceChangeListener 
         return true
     }
 
-    override fun onPreferenceChange(preference: Preference?, value: Any): Boolean {
+    private fun scheduleRingtonesChanging(enable: Boolean): Boolean {
 
-        if ((value is Boolean && value) || value is Int) {
-            SilentModeAlarm.scheduleVibrationMode(activity, from.mTime, to.mTime)
-        }
+        val a: MainActivity = activity as MainActivity
+
+        if (enable) a.schedule() else a.cancel()
 
         return true
-    }
-
-    override fun onDisplayPreferenceDialog(preference: Preference) {
-
-        val dialogFragment: DialogFragment = SilentModeDialog.newInstance(preference.key)
-
-        dialogFragment.setTargetFragment(this, 0)
-        dialogFragment.show(activity.supportFragmentManager, SilentModeDialog::class.java.name)
     }
 
 }
